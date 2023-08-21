@@ -18,7 +18,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserProfileResponseModel getUserProfile() {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        System.out.println("email:" + email);
 
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new EntityNotFoundException("User " + email + " Not Found"));
