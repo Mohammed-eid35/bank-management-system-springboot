@@ -27,16 +27,15 @@ public class UserRepositoryTest {
 
     @BeforeEach
     public void setUp() {
-        user = User
+        user = userRepository.save(User
                 .builder()
                 .name("Muhammad Eid")
                 .email("mohammed@gmail.com")
                 .phone("01552422396")
                 .role(Role.USER)
                 .password("123456")
-                .build();
-
-        userRepository.save(user);
+                .build()
+        );
     }
 
     @Test
