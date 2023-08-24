@@ -30,19 +30,14 @@ public class AccountServiceImpl implements AccountService {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new EntityNotFoundException("User " + email + " Not Found"));
 
-        String cardNumber = Utils.generateCardNumber();
-        while (accountRepository.existsByCardNumber(cardNumber)) {
-            cardNumber = Utils.generateCardNumber();
-        }
-
         Account account = accountRepository.save(
-                Account
-                        .builder()
-                        .cardNumber(cardNumber)
-                        .cvv(Utils.generateCVV())
-                        .balance(0.0)
-                        .user(user)
-                        .build()
+            Account
+                .builder()
+                .cardNumber(generateUniqueCardNumber())
+                .cvv(Utils.generateCVV())
+                .balance(0.0)
+                .user(user)
+                .build()
         );
 
         return accountMapper.toResponseModel(account);
@@ -60,5 +55,15 @@ public class AccountServiceImpl implements AccountService {
                 .stream()
                 .map(accountMapper::toResponseModel)
                 .toList();
+    }
+
+    public String generateUniqueCardNumber() {
+        String cardNumber = Utils.generateCardNumber();
+
+        while (accountRepository.existsByCardNumber(cardNumber)) {
+            cardNumber = Utils.generateCardNumber();
+        }
+
+        return cardNumber;
     }
 }
