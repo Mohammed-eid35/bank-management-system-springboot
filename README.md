@@ -65,8 +65,8 @@ Once you have the required tools installed, follow these steps to install the Ba
 - Java
 - Spring Boot
 - Spring Security
-- Spring Data JPA
 - json web token (JWT)
+- Spring Data JPA
 - Lombok
 - PostgreSQL
 - Maven 
