@@ -6,6 +6,7 @@ Welcome to the Bank Management System repository built using Spring Boot! This p
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Datavase Schema](#database-schema)
 - [Technologies Used](#technologies-used)
 - [Contributing](#contributing)
 
@@ -60,6 +61,9 @@ Once you have the required tools installed, follow these steps to install the Ba
   - Deposit Funds: Any interface can conveniently utilize the `/transaction/deposit` endpoint to securely deposit funds into specified accounts.
   - Withdraw Funds: Similarly, the `/transaction/withdraw` endpoint is available for withdrawing funds from accounts, ensuring your transactions are seamless and accurate.
 
+
+## Database Schema
+[ERD Link](https://mermaid.live/edit#pako:eNqNU9luwjAQ_BVrnwFBQ5zjLS2piqAXR1VVkdCSWCUqsSPHoaWBf69JuKSgCj841ni0MzveFBCKiIELTPZi_JSYBJzoNc2YJEV13q2xP-p7QxJH5GVwQt-80d2DNyIcE1ZHU8yybyGjCzcLwRkJYPrUf536AdQZLMF4WWNsq0-1e2Eocq6udxmijGY8T-a6tf-0w9XqBPaep7dDn8xxiTxkNalc5zTTeveDo8PqMJHIMwxVLPj1DtU6ZTVpTHZtnuCJ_z4hXCiWnVG9iU9UnLBMYZLW5LCK6qLR8qU3m2ZTFMdIXZ3PArNDOAd4zzpvrWTGmRJyHQA0IGFSv1ykB6psOgC1YHo2YMeLUH7tSm41D3MlxmsegqtkzhqQpxEqth_BA5giB7eAH3BvHNoyu9SyqNPpOtRu0wasNWy3DKPTbVvUMm3Dsdp024BfIXSFdsvp2CY1unbHMqlpmHZZ76O8rMqzKNa-H6v5L3-D7R8SeN4G)
 
 ## Technologies Used
 - Java
