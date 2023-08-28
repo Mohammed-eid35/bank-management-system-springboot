@@ -63,7 +63,37 @@ Once you have the required tools installed, follow these steps to install the Ba
 
 
 ## Database Schema
-[ERD Link](https://mermaid.live/edit#pako:eNqNU9luwjAQ_BVrnwFBQ5zjLS2piqAXR1VVkdCSWCUqsSPHoaWBf69JuKSgCj841ni0MzveFBCKiIELTPZi_JSYBJzoNc2YJEV13q2xP-p7QxJH5GVwQt-80d2DNyIcE1ZHU8yybyGjCzcLwRkJYPrUf536AdQZLMF4WWNsq0-1e2Eocq6udxmijGY8T-a6tf-0w9XqBPaep7dDn8xxiTxkNalc5zTTeveDo8PqMJHIMwxVLPj1DtU6ZTVpTHZtnuCJ_z4hXCiWnVG9iU9UnLBMYZLW5LCK6qLR8qU3m2ZTFMdIXZ3PArNDOAd4zzpvrWTGmRJyHQA0IGFSv1ykB6psOgC1YHo2YMeLUH7tSm41D3MlxmsegqtkzhqQpxEqth_BA5giB7eAH3BvHNoyu9SyqNPpOtRu0wasNWy3DKPTbVvUMm3Dsdp024BfIXSFdsvp2CY1unbHMqlpmHZZ76O8rMqzKNa-H6v5L3-D7R8SeN4G)
+```mermaid
+erDiagram
+    User {
+        SERIAL id PK
+        VARCHAR name
+        VARCHAR password
+        VARCHAR phone "UNIQUE"
+        VARCHAR email "UNIQUE"
+    }
+    
+    Account {
+        SERIAL id PK
+        VARCHAR card_number "UNIQUE"
+        VARCHAR cvv
+        DOUBLE balance
+        SERIAL user_id FK
+    }
+
+    Transaction {
+        SERIAL id PK
+        VARCHAR type
+        DOUBLE amount
+        TEXT notes
+        DATE timestamp
+        SERIAL account_id FK
+    }
+
+    User ||--o{ Account : "has"
+    Account ||--o{ Transaction : "history"
+```
+
 
 ## Technologies Used
 - Java
