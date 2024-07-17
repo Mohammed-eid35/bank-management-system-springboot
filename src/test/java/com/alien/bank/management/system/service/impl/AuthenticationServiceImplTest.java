@@ -8,6 +8,7 @@ import com.alien.bank.management.system.model.authentication.LoginRequestModel;
 import com.alien.bank.management.system.model.authentication.RegisterRequestModel;
 import com.alien.bank.management.system.repository.UserRepository;
 import com.alien.bank.management.system.security.JwtService;
+import com.alien.bank.management.system.service.RefreshTokenService;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
@@ -47,12 +48,14 @@ public class AuthenticationServiceImplTest {
     private User user;
     private RegisterRequestModel registerRequest;
     private LoginRequestModel loginRequest;
+    @Mock
+    private RefreshTokenService refreshTokenService;
 
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
 
-        authenticationService = new AuthenticationServiceImpl(userRepository, jwtService, userMapper, authenticationManager);
+        authenticationService = new AuthenticationServiceImpl(userRepository, jwtService, userMapper, authenticationManager, refreshTokenService);
 
         registerRequest = RegisterRequestModel
                 .builder()

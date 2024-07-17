@@ -12,10 +12,13 @@ import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import java.util.function.Function;
 
 @Service
 public class JwtService {
+
+    private static final long refreshTokenExpirationDate = 3600000;
 
     private static final String SECRET_KEY = "4bf04870a95e3897a02f95eb5477afd89400154cbab8e1f596897f8608572552";
 
@@ -39,6 +42,19 @@ public class JwtService {
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 100000 * 60 * 24 ))
+                .signWith(getSignInKey(), SignatureAlgorithm.HS256)
+                .compact();
+    }
+
+    public String generateRefreshToken(String username) {
+        Date currentDate = new Date();
+        Date expireDate = new Date(currentDate.getTime() + refreshTokenExpirationDate);
+
+        return Jwts.builder()
+                .setSubject(username)
+                .setId(UUID.randomUUID().toString())
+                .setIssuedAt(currentDate)
+                .setExpiration(expireDate)
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
     }

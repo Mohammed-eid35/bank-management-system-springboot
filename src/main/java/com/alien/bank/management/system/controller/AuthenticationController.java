@@ -2,6 +2,7 @@ package com.alien.bank.management.system.controller;
 
 import com.alien.bank.management.system.model.ResponseModel;
 import com.alien.bank.management.system.model.authentication.LoginRequestModel;
+import com.alien.bank.management.system.model.authentication.RefreshTokenRequest;
 import com.alien.bank.management.system.model.authentication.RegisterRequestModel;
 import com.alien.bank.management.system.service.AuthenticationService;
 import jakarta.validation.Valid;
@@ -39,5 +40,23 @@ public class AuthenticationController {
                         .data(authenticationService.login(request))
                         .build()
         );
+    }
+
+    @PostMapping("/refreshToken")
+    public ResponseEntity<ResponseModel> refreshToken(@Valid @RequestBody RefreshTokenRequest request) {
+        return ResponseEntity.ok(
+                ResponseModel
+                        .builder()
+                        .status(HttpStatus.OK)
+                        .success(true)
+                        .data(authenticationService.refreshToken(request.getToken()))
+                        .build()
+        );
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<Void> logout(@Valid @RequestBody RefreshTokenRequest refreshTokenDto) {
+        authenticationService.logout(refreshTokenDto.getToken());
+        return ResponseEntity.ok().build();
     }
 }

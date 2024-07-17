@@ -9,4 +9,7 @@ public interface AuthenticationService {
     public AuthenticationResponseModel register(RegisterRequestModel request);
 
     public AuthenticationResponseModel login(LoginRequestModel request);
+    AuthenticationResponseModel refreshToken(String refreshToken);
+
+    void logout(String refreshToken);
 }
